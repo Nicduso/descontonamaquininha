@@ -9,28 +9,33 @@
     <link rel="stylesheet" href="public/css/reset.css">
     <link rel="stylesheet" href="public/css/main.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+  </head> 
 </head>
 <body>
-        <header class="header">
-            <div class="header__items container">
-                <img class="header__items__logo" src="public/images/logo-mobile.png" alt="Logo Desconto da Maquininha">
-                <div class="header__items__search">
-                    <i class="material-icons">search</i>
-                    <input class="header__items__search__input" type="search" placeholder="Buscar">
-                </div>
-            </div>
-        </header>
         <main class="container">
             <h1>
                 Escolha a melhor maquininha para você e resgate o desconto!
             </h1>
-            <section class="products">
-                <div class="products__detail">
-                    <img src="" alt="">
-                    <h2>Você ganhou 81% na sua Point Pro 2!</h2>
-                    <a class="products__detail__purchaseLink" href="" target="_blank">Compre com desconto aqui!</a>
-                </div>
-                    <button class="products__detail__button">Detalhes</button>
+            <div class="swiper">
+                <section class="products swiper-wrapper">
+                    <div class="swiper-slide">
+                        <div class="products__detail">
+                            <img src="" alt="">
+                            <h2>Você ganhou 81% na sua Point Pro 2!</h2>
+                            <a class="products__detail__purchaseLink" href="" target="_blank">Compre com desconto aqui!</a>
+                        </div>
+                            <button class="products__detail__button">Detalhes</button>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="products__detail">
+                            <img src="" alt="">
+                            <h2>Você ganhou 81% na sua Point Pro 2!</h2>
+                            <a class="products__detail__purchaseLink" href="" target="_blank">Compre com desconto aqui!</a>
+                        </div>
+                            <button class="products__detail__button">Detalhes</button>
+                    </div>
+            </div>
+            <div class="swiper-pagination"></div>
                 <div class="products__moreInfo">
                     <div class="products__moreInfo__list">
                         <ul>
@@ -62,5 +67,7 @@
         </main>
     <script src="public/js/modalScript.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="public/js/swiper.js" defer></script>
+    <script src="public/js/main.js" defer></script>
 </body>
 </html>
