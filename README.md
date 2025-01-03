@@ -34,3 +34,7 @@ This project provides a platform for merchants looking for card machines with sp
 - CSS
 - JavaScript (for dynamic interaction)
 - Material Icons (for icons)
+
+
+## License
+This project is licensed under the Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License.
