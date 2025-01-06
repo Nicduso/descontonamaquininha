@@ -1,15 +1,11 @@
-body {
-    padding: 0 2.4rem;
-    background-color: #6EC3D4;
-}
-
 .header__items {
     background-color: #6EC3D4;
     height: 8.5rem;
-    width: 100%;
+    width: 100vw;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    padding: 0 2.4rem;
 }
 
 .header__items__logo {
