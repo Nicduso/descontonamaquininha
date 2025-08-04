@@ -30,15 +30,6 @@ header {
   gap: 0;
 }
 
-.search-filter {
-	gap: 79px;
-  background-color: #151515;
-  padding: 12px 32px;
-  border-radius: 16px 0 0 16px;
-  display: flex;
-  align-items: center;
-}
-
 .search-text {
   background-color: #FFFFFF;
 	width: 100%;
@@ -50,23 +41,32 @@ header {
 	font-size: 24px;
 }
 
+.search-filter {
+	position: relative;
+}
+
 .operator-select {
-  font-size: 20px;
-  background: none;
+  background-color: #151515;
+  padding: 12px 80px 12px 32px;
+  border-radius: 16px 0 0 16px;
+  display: flex;
+  align-items: center;
+	font-size: 20px;
   color: #FFFFFF;
-  padding: 18px;
   margin: 0;
   cursor: pointer;
 }
 
 .arrow-down-icon {
-  margin-left: -40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0;
+	position: absolute;
+	top: 0;
+	right: 0;
+	background-color: none;
+  display: block;
+  padding: 0 32px 0 0;
   color: #FFFFFF;
-  font-size: 32px;
+  font-size: 40px;
+	pointer-events: none;
 }
 
 .page-title {
@@ -137,20 +137,6 @@ header {
 	display: none;
 }
 
-/*Teste de cores:*/
-
-.azul {
-  background-color: #056BC8;
-}
-
-.verde {
-  background-color: #28a745;
-}
-
-.laranja {
-  background-color: #f57c00;
-}
-
 @media screen and (min-width: 768px) {
 	.card-list {
 		display: grid;
@@ -212,19 +198,22 @@ header {
 	.machine-link {
 		padding: 7.5px 28px;
 		font-size: 24px;
+		max-width: 230px;
+		margin: 0 auto;
 	}
 
 	.machine-title {
 		display: block;
+		max-width: 280px;
 		color: #FFFFFF;
 		font-weight: bold;
 		font-size: 24px;
 		text-align: center;
-		margin: 26px 0;
+		margin: 26px auto;
 	}
 }
 
-@media screen and (min-width: 1200px) {
+@media screen and (min-width: 1366px) {
 	.card-list {
 		display: grid;
 		grid-template-columns: 1fr 1fr 1fr 1fr;
