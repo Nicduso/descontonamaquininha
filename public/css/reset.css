@@ -42,6 +42,28 @@ q:before, q:after {
 	content: '';
 	content: none;
 }
+
+input[type="text"],
+select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  border: none;
+  background: none;
+  outline: none;
+  font-family: inherit;
+  font-size: inherit;
+  padding: 0;
+  margin: 0;
+}
+
+#operator-select, option {
+  appearance: none;
+  outline: none;
+  border: none;
+}
+
+
 table {
 	border-collapse: collapse;
 	border-spacing: 0;
