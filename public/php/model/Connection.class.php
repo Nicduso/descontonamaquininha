@@ -14,7 +14,7 @@ class Connection {
 				$environment = $_ENV['APP_ENV'] ?? 'local';
 
 				if ($environment === 'local') {
-					// Usa .env local
+					// Carrega .env apenas no ambiente local
 					$dotenv = Dotenv::createImmutable(__DIR__ . '/../../../');
 					$dotenv->load();
 
