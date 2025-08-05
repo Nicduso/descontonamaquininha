@@ -4,9 +4,6 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Aws\Ssm\SsmClient;
 use Dotenv\Dotenv;
 
-$dotenv = Dotenv::createImmutable(__DIR__ . '/../../../');
-$dotenv->load();
-
 class Connection {
 	public static $instance;
 
@@ -18,6 +15,9 @@ class Connection {
 
 				if ($environment === 'local') {
 					// Usa .env local
+					$dotenv = Dotenv::createImmutable(__DIR__ . '/../../../');
+					$dotenv->load();
+
 					$host = $_ENV['DB_HOST'];
 					$dbname = $_ENV['DB_NAME'];
 					$user = $_ENV['DB_USER'];
