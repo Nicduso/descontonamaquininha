@@ -5,3 +5,4 @@
 /vendor/
 /composer.phar
 /public/php/model/ConnectionLocal.class.php
+/public/php/view/local_test.php

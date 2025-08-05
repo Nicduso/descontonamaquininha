@@ -1,0 +1,104 @@
+body {
+  font-family: "Arimo", sans-serif;
+  background: #FFFFFF;
+}
+
+header {
+	background-color: #6EC3D4;
+	width: 100%;
+	padding: 50px 30px;
+	align-items: center;
+	display: flex;
+	max-height: 100px;
+	margin-bottom: 32px;
+	box-shadow: 4px 4px 4px 0px rgba(0,0,0,0.25);
+}
+
+.image-logo {
+	width: 70%;
+	min-width: 250px;
+	max-width: 500px;
+	margin: 0 auto;
+}
+
+.panel {
+	border-radius: 16px;
+	box-shadow: 4px 4px 4px 0px rgba(0,0,0,0.25);
+	max-width: 296px;
+	margin: 0 auto;
+}
+
+.panel-form {
+	background-color: #151515;
+	border-radius: 16px 16px 0 0;
+	align-items: center;
+	display: grid;
+	padding: 40px 24px;
+	grid-template-columns: 1fr;
+	gap: 24px;
+}
+
+.form-title {
+	color: #FFFFFF;
+	font-size: 20px;
+	text-align: center;
+	font-weight: bold;
+}
+
+.form-field {
+	background-color: #FFFFFF;
+	height: 40px;
+	border-radius: 16px;
+	padding: 0 0 0 25px;
+	display: flex;
+}
+
+input[type="text"] {
+	width: 100%;
+	font-size: 16px;
+}
+
+input[type="text"]::placeholder {
+	color: #000000;
+	font-size: 16px;
+	text-align: start;
+}
+
+input[type="text"]:focus::placeholder {
+  color: transparent;
+}
+
+.form-submit {
+	width: 112px;
+	height: 30px;
+	border: none;
+	border-radius: 8px;
+	background-color: #FFFFFF;
+	font-size: 14px;
+	font-weight: bold;
+	margin: 0 auto;
+	box-shadow: 4px 4px 4px 0px rgba(0,0,0,0.25);
+}
+
+.form-submit:hover {
+	cursor: pointer;
+	background-color: #6EC3D4;
+}
+
+.pass-button {
+	padding: 11px 0;
+	width: 296px;
+	font-size: 14px;
+	background-color: #D9D9D9;
+	border-radius: 0 0 16px 16px;
+	text-align: center;
+	color: #000000;
+	border: none;
+}
+
+.pass-button:hover {
+	color: #151515;
+	font-weight: bold;
+	background-color: #6EC3D4;
+	cursor: pointer;
+}
