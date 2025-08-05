@@ -15,6 +15,7 @@ Este projeto oferece uma plataforma para lojistas que estão procurando maquinin
 - HTML
 - CSS
 - PHP (para interação dinâmica)
+- MySQL
 - Material Icons (para ícones)
 - Hospedagem AWS
 
@@ -34,6 +35,7 @@ This project provides a platform for merchants looking for card machines with sp
 - HTML
 - CSS
 - PHP (for dynamic interaction)
+- MySQL
 - Material Icons (for icons)
 - AWS Cloud
 
