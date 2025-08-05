@@ -1,2 +1,7 @@
 .editorconfig
 /public/js/
+.env
+*.pem
+/vendor/
+/composer.phar
+/public/php/model/ConnectionLocal.class.php
