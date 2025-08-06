@@ -13,7 +13,7 @@
 	<header>
 		<img class="image-logo" src="../../images/logo-mobile-extends.svg" alt="Logo desconto na maquininha">
 	</header>
-	<main>
+	<main> 
 		<div class="panel">
 			<form action="" class="panel-form">
 				<h1 class="form-title">Painel Administrativo</h1>
