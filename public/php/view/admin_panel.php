@@ -13,7 +13,7 @@
 	<header>
 		<img class="image-logo" src="../../images/logo-mobile-extends.svg" alt="Logo desconto na maquininha">
 	</header>
-	<main> 
+	<main>
 		<div class="panel">
 			<form action="" class="panel-form">
 				<h1 class="form-title">Painel Administrativo</h1>
@@ -21,7 +21,7 @@
 				<div class="form-field"><input type="text" placeholder="Senha"></div>
 				<input type="submit" class="form-submit" value="Acessar">
 			</form>
-			<button class="pass-button">Alterar senha</button>
+			<a href="mailto:contact@descontonamaquinha.com.br?subject=Solicitar acesso ao painel administrativo&body=Olá, gostaria de solicitar acesso ao painel administrativo para a inserção de produtos. Meu nome é... e meu CPF é..." target="_blank" class="pass-button">Solicitar acesso</a>
 		</div>
 	</main>
 </body>

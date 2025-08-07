@@ -7,9 +7,85 @@
 	<title>Manutenção de registros</title>
 	<link rel="stylesheet" href="../../css/reset.css">
 	<link rel="stylesheet" href="../../css/product_registration.css">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Arimo&display=swap" rel="stylesheet">
 </head>
 <body>
-	
+	<header>
+		<img class="image-logo" src="../../images/logo-desktop.svg" alt="Logo desconto na maquininha">
+		<button class="exit-button">Sair</button>
+	</header>
+	<main>
+		<div class="products-panel">
+			<div class="products-header">
+				<h2 class="panel-title">Produtos cadastrados:</h2>
+				<section class="search">
+					<i class="material-icons search-icon">search</i>
+					<input type="text" class="search-text">
+				</section>
+			</div>
+			<div class="products-list">
+				<table>
+					<tr class="title-row">
+						<th class="id-title">ID</th>
+						<th class="table-title">Operadora</th>
+						<th class="table-title">Maquininha</th>
+					</tr>
+					<tr class="content-row">
+						<td class="table-content">0000</td>
+						<td class="table-content">Mercado Pago</td>
+						<td class="table-content">Point Mini</td>
+					</tr>
+					<tr class="content-row">
+						<td class="table-content">0000</td>
+						<td class="table-content">Mercado Pago</td>
+						<td class="table-content">Point Mini</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+		<div class="product-container">
+			<div class="products-register">
+				<h1 class="form-title">Cadastro de Produto:</h1>
+				<form class="register-form">
+					<div class="form-line">
+						<label class="label-form">Operadora:</label>
+						<div class="normal-input-text"><input type="text"></div>
+					</div>
+					<div class="form-line">
+						<label class="label-form">Modelo:</label>
+						<div class="normal-input-text"><input type="text"></div>
+					</div>
+					<div class="form-line">
+						<label class="label-form">Desconto:</label>
+						<div class="normal-input-text">
+							<input type="text" placeholder="%">
+						</div>
+					</div>
+					<div class="form-line">
+						<label class="label-form">Link:</label>
+						<div class="normal-input-text"><input type="text" class="link-text"></div>
+					</div>
+					<div class="form-line">
+						<label class="label-form">Detalhes:</label>
+						<div class="details-text"><textarea class="details-text-input" rows="2"></textarea></div>
+					</div>
+					<div class="form-line">
+						<label class="label-form">Imagem:</label>
+					<div class="form-upload upload-container">
+						<label for="file-upload" class="custom-upload"><i class="material-icons">upload</i>Escolher imagem</label>
+						<input type="file" id="file-upload" class="form-file">
+					</div>
+					</div>
+					<div class="form-actions">
+						<input type="submit" value="Cadastrar" class="form-button">
+						<input type="submit" value="Alterar" class="form-button extra-button">
+						<input type="submit" value="Excluir" class="form-button extra-button">
+					</div>
+				</form>
+			</div>
+			<p class="info-text">Há mais funções acessíveis nas resoluções de desktop.</p>
+		</div>
+	</main>
 </body>
 </html>
