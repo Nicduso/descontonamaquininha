@@ -1,5 +1,5 @@
 function loadProducts(title = '') {
-	fetch(`../php/controller/search_products.php?title=${encodeURIComponent(title)}`)
+	fetch(`../controller/search_products.php?title=${encodeURIComponent(title)}`)
 		.then(response => response.text())
 		.then(html => {
 			const table = document.querySelector('.products-list table');
