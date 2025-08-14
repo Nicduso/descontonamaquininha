@@ -67,7 +67,7 @@
 		</div>
 		<div class="product-container">
 				<h1 class="form-title">Cadastro de Produto:</h1>
-				<form class="register-form" method="POST" enctype="multipart/form-data" action="product_register.php">
+				<form class="register-form" method="POST" enctype="multipart/form-data" action="product_registration.php">
 					<input type="hidden" name="id" id="form-id">
 					<div class="form-line">
 						<label class="label-form">Operadora:</label>
