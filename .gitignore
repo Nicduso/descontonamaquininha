@@ -1,5 +1,4 @@
 .editorconfig
-/public/js/
 .env
 *.pem
 /vendor/
