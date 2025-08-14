@@ -4,6 +4,7 @@
 	require_once("../model/Connection.class.php");
 
 		$dao = new DAO();
+		$successMessage = '';
 		if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			$action = $_POST['action'];
 			$product = new Register();
@@ -14,12 +15,14 @@
 			$product->setMoreInfo($_POST['more_info']);
 			$product->setPhoto($_FILES['photo']);
 
-		if ($action == 'Cadastrar') {
-			$dao->insert($product);
-		} elseif ($action == 'Alterar') {
-			$id = $_POST['id'];
-			$dao->modify($id, $product);
-		}
+			if ($action == 'Cadastrar') {
+				$dao->insert($product);
+				$successMessage = 'Produto cadastrado com sucesso!';
+			} elseif ($action == 'Alterar') {
+				$id = $_POST['id'];
+				$dao->modify($id, $product);
+				$successMessage = 'Produto alterado com sucesso!';
+			}
 	}
 
 	if (isset($_GET['delete'])) {
@@ -56,17 +59,14 @@
 			</div>
 			<div class="products-list">
 				<table>
-					<tr class="title-row">
-						<th class="id-title">ID</th>
-						<th class="table-title">Operadora</th>
-						<th class="table-title">Maquininha</th>
-						<th class="table-title" colspan="2">Ação</th>
-					</tr>
 				</table>
 			</div>
 		</div>
 		<div class="product-container">
 				<h1 class="form-title">Cadastro de Produto:</h1>
+				<?php if (!empty($successMessage)): ?>
+					<p class="success-message"><?= $successMessage ?></p>
+				<?php endif; ?>
 				<form class="register-form" method="POST" enctype="multipart/form-data" action="product_registration.php">
 					<input type="hidden" name="id" id="form-id">
 					<div class="form-line">
@@ -109,5 +109,10 @@
 		</div>
 	</main>
 	<script src="../../js/script.js"></script>
+	<?php if (!empty($successMessage)): ?>
+		<script>
+			loadProducts();
+		</script>
+	<?php endif; ?>
 </body>
 </html>
