@@ -99,7 +99,7 @@ main {
 	background-color: #FFFFFF;
 	border-radius: 16px;
 	height: 40px;
-	width: 245px;
+	/* width: 245px; */
 	align-items: center;
 	display: flex;
 	padding: 0 20px;
@@ -138,7 +138,11 @@ main {
 .edit-icon {
 	background-color: transparent;
 	border: none;
+}
+
+.delete-icon:hover, .edit-icon:hover {
 	cursor: pointer;
+	color: #FFFFFF;
 }
 
 .table-title {

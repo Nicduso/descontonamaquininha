@@ -1,7 +1,7 @@
 <?php
 	require_once ("../controller/DAO.class.php");
 	require_once ("../model/Register.class.php");
-	require_once("../model/Connection.class.php");
+	require_once ("../model/config.php");
 
 		$dao = new DAO();
 		$successMessage = '';
@@ -13,7 +13,18 @@
 			$product->setDiscount($_POST['discount']);
 			$product->setLinkPromo($_POST['link_promo']);
 			$product->setMoreInfo($_POST['more_info']);
-			$product->setPhoto($_FILES['photo']);
+
+			$photoPath = '';
+			if (isset($_FILES['photo']) && $_FILES['photo']['error'] == UPLOAD_ERR_OK) {
+				$photoName = basename($_FILES['photo']['name']);
+				$targetDir = '../../images/products/';
+				$targetPath = $targetDir . $photoName;
+
+				if (move_uploaded_file($_FILES['photo']['tmp_name'], $targetPath)) {
+					$photoPath = 'images/' . $photoName;
+				}
+			}
+			$product->setPhoto($photoPath);
 
 			if ($action == 'Cadastrar') {
 				$dao->insert($product);

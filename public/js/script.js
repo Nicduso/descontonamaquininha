@@ -22,8 +22,11 @@ function fillForm(product) {
 	document.querySelector('[name="discount"]').value = product.discount;
 	document.querySelector('[name="link_promo"]').value = product.link_promo;
 	document.querySelector('[name="more_info"]').value = product.more_info;
-
 	document.getElementById('file-name').textContent = 'Nenhum ficheiro selecionado';
+
+	const submitBtn = document.getElementById('submit-button');
+	submitBtn.value = 'Alterar';
+	submitBtn.textContent = 'Alterar';
 }
 
 document.addEventListener('DOMContentLoaded', () => {
