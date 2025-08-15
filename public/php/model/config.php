@@ -1,5 +1,5 @@
 <?php
-define('ENVIRONMENT', 'local');
+define('ENVIRONMENT', 'aws');
 
 define('DB_LOCAL', __DIR__ . '/ConnectionLocal.class.php');
 define('DB_AWS', __DIR__ . '/Connection.class.php');
