@@ -28,6 +28,7 @@ main {
 	color: green;
 	font-weight: bold;
 	margin-bottom: 10px;
+	font-size: 12px;
 }
 
 .image-logo {
@@ -130,6 +131,16 @@ main {
 	max-width: 60px;
 }
 
+.delete-icon {
+	color: #000000;
+}
+
+.edit-icon {
+	background-color: transparent;
+	border: none;
+	cursor: pointer;
+}
+
 .table-title {
 	max-width: 100px;
 }
@@ -153,7 +164,6 @@ tr:nth-child(even) {
 
 .content-row:hover {
 	background-color: #6EC3D4;
-	cursor: pointer;
 }
 
 .info-text {

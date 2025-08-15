@@ -58,15 +58,11 @@
 				</section>
 			</div>
 			<div class="products-list">
-				<table>
-				</table>
+				<table></table>
 			</div>
 		</div>
 		<div class="product-container">
 				<h1 class="form-title">Cadastro de Produto:</h1>
-				<?php if (!empty($successMessage)): ?>
-					<p class="success-message"><?= $successMessage ?></p>
-				<?php endif; ?>
 				<form class="register-form" method="POST" enctype="multipart/form-data" action="product_registration.php">
 					<input type="hidden" name="id" id="form-id">
 					<div class="form-line">
@@ -105,6 +101,9 @@
 						<input type="reset" value="Limpar campos" class="form-button extra-button">
 					</div>
 				</form>
+			<?php if (!empty($successMessage)): ?>
+				<p class="success-message"><?= $successMessage ?></p>
+			<?php endif; ?>
 			<p class="info-text">Há mais funções acessíveis nas resoluções de desktop.</p>
 		</div>
 	</main>

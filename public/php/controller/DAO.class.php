@@ -18,20 +18,21 @@
 			}
 		}
 
-		public function search($title) {
-			try {
-				$sql = "SELECT * FROM products WHERE title LIKE :title";
-				$p_sql = Connection::getInstance()-> prepare($sql);
-				$p_sql->bindValue(":title", "%{$title}%");
-				$p_sql->execute();
-				$list = $p_sql->fetchAll(PDO::FETCH_ASSOC);
+	public function search($query = '') {
+		try {
+			$sql = "SELECT * FROM products WHERE title LIKE :query OR brand LIKE :query";
+			$p_sql = Connection::getInstance()->prepare($sql);
+			$p_sql->bindValue(":query", "%{$query}%");
+			$p_sql->execute();
 
-				return $list;
-			} catch(Exception $e) {
-				echo "Erro ao consultar Registro".$e->getMessage();
-			}
-
+			return $p_sql->fetchAll(PDO::FETCH_ASSOC);
+		} catch(Exception $e) {
+			echo "Erro ao consultar Registro: " . $e->getMessage();
+			return [];
 		}
+	}
+
+
 
 		public function delete($id) {
 			try {

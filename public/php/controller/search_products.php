@@ -11,9 +11,9 @@ foreach ($products as $product) {
 	echo "<td class='table-content'>{$product['brand']}</td>";
 	echo "<td class='table-content'>{$product['title']}</td>";
 	echo "<td class='table-content'>
-			<a href='product_registration.php?delete={$product['id']}'><i class='material-icons delete-icon'>delete</i></a>
-			<button onclick='fillForm(<?= json_encode($product) ?>)'><i class='material-icons edit-icon'>edit</i></button>
-		</td>";
+			<a href='product_registration.php?delete={$product['id']}'><i class='material-icons delete-icon'>delete</i></a></td>";
+	echo "<td class='table-content'>
+			<button onclick='fillForm(<?= json_encode($product) ?>)' class='edit-icon'><i class='material-icons'>edit</i></button></td>";
 	echo "</tr>";
 }
 ?>
