@@ -60,13 +60,24 @@ input[type="text"] {
 	font-size: 16px;
 }
 
-input[type="text"]::placeholder {
+input[type="password"] {
+	font-size: 16px;
+	background-color: transparent;
+	border: none;
+}
+
+input[type="password"]:focus {
+	outline: none;
+	box-shadow: none;
+}
+
+input[type="text"]::placeholder, input[type="password"]::placeholder {
 	color: #000000;
 	font-size: 16px;
 	text-align: start;
 }
 
-input[type="text"]:focus::placeholder {
+input[type="text"]:focus::placeholder, input[type="password"]:focus::placeholder {
   color: transparent;
 }
 

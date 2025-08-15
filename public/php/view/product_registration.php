@@ -1,4 +1,9 @@
 <?php
+	session_start();
+	if (!isset($_SESSION['user'])) {
+		header('Location: admin_panel.php');
+		exit;
+	}
 	require_once ("../controller/DAO.class.php");
 	require_once ("../model/Register.class.php");
 	require_once ("../model/config.php");
@@ -57,7 +62,9 @@
 <body>
 	<header>
 		<img class="image-logo" src="../../images/logo-desktop.svg" alt="Logo desconto na maquininha">
-		<button class="exit-button">Sair</button>
+		<form method="POST" action="../controller/logout.php">
+			<button type="submit" class="exit-button">Sair</button>
+		</form>
 	</header>
 	<main>
 		<div class="products-panel">
