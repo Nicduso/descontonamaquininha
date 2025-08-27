@@ -63,6 +63,7 @@
 	<header>
 		<img class="image-logo" src="../../images/logo-desktop.svg" alt="Logo desconto na maquininha">
 		<form method="POST" action="../controller/logout.php">
+			<a href="user_registration.php" class="user-button">Cadastro Usuário</a>
 			<button type="submit" class="exit-button">Sair</button>
 		</form>
 	</header>
