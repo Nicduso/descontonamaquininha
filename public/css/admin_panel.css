@@ -115,3 +115,10 @@ input[type="text"]:focus::placeholder, input[type="password"]:focus::placeholder
 	background-color: #6EC3D4;
 	cursor: pointer;
 }
+
+.error-message {
+	text-align: center;
+	font-size: 14px;
+	color: #920101;
+	margin-top: 10px;
+}

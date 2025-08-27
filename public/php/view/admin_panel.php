@@ -46,13 +46,13 @@
 				<div class="form-field"><input type="text" placeholder="Usuário" name="username"></div>
 				<div class="form-field"><input type="password" placeholder="Senha" name="user_password"></div>
 				<input type="submit" class="form-submit" value="Acessar">
-				<?php if ($error): ?><p><?= $error ?></p><?php endif; ?>
 			</form>
 			<a href="mailto:contact@descontonamaquinha.com.br?subject=Solicitar acesso ao painel administrativo&body=Olá, gostaria de solicitar acesso ao painel administrativo para a inserção de produtos. Meu nome é... e meu CPF é..." target="_blank" class="pass-button">Solicitar acesso</a>
 		</div>
+		<?php if ($error): ?><p class="error-message"><?= $error ?></p><?php endif; ?>
+		<?php if (isset($_GET['logout'])): ?>
+			<div class="alert">Logout realizado com sucesso!</div>
+		<?php endif; ?>
 	</main>
-	<?php if (isset($_GET['logout'])): ?>
-		<div class="alert">Logout realizado com sucesso!</div>
-	<?php endif; ?>
 </body>
 </html>

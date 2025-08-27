@@ -1,0 +1,102 @@
+body {
+    font-family: 'Arimo', sans-serif;
+    background-color: #f4f6f8;
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+header {
+    background-color: #151515;
+    padding: 20px;
+    text-align: center;
+    color: #fff;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 24px;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 20px;
+}
+
+.panel {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    max-width: 400px;
+    width: 100%;
+}
+
+.panel-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-field {
+    margin-bottom: 20px;
+}
+
+.form-field input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 16px;
+    transition: border-color 0.3s;
+}
+
+.form-field input:focus {
+    border-color: #58afc0;
+    outline: none;
+}
+
+.form-submit {
+    background-color: #6EC3D4;
+    color: #fff;
+    border: none;
+    padding: 12px;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.form-submit:hover {
+    background-color: #58afc0;
+}
+
+.error {
+    color: #e74c3c;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.success {
+    color: #2ecc71;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.panel-links {
+    margin-top: 30px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.pass-button {
+    text-decoration: none;
+    color: #6EC3D4;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+.pass-button:hover {
+    color: #58afc0;
+}
