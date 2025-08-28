@@ -1,5 +1,5 @@
 <?php
-	require_once __DIR__ . '/../model/config.php';
+	require_once __DIR__ . '/../model/Connection.class.php';
 	class DAO {
 		public function insert($products) {
 			try {

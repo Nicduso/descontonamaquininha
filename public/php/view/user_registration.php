@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once '../model/config.php';
+require_once '../model/Connection.class.php';
 
 if (!isset($_SESSION['user'])) {
     header('Location: admin_panel.php');

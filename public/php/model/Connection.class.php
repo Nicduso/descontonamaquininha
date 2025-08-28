@@ -5,40 +5,43 @@ use Aws\Ssm\SsmClient;
 use Aws\Exception\AwsException;
 
 class Connection {
-	public static $instance;
+    public static $instance;
 
-	public static function getInstance() {
-		if (!isset(self::$instance)) {
-			try {
-				$client = new SsmClient([
-					'version' => 'latest',
-					'region'  => 'us-east-1',
-				]);
-				$parameters = $client->getParametersByPath([
-					'Path' => '/descontonamaquininha/',
-					'WithDecryption' => true,
-				])['Parameters'];
+    public static function getInstance() {
+        if (!isset(self::$instance)) {
+            try {
+                $client = new SsmClient([
+                    'version' => 'latest',
+                    'region'  => 'us-east-1',
+                ]);
 
-				$data = [];
-				foreach ($parameters as $param) {
-					$name = basename($param['Name']);
-					$data[$name] = $param['Value'];
-				}
+                $result = $client->getParametersByPath([
+                    'Path' => '/descontonamaquininha/',
+                    'WithDecryption' => true,
+                ]);
 
-				$host   = $data['DB_HOST'];
-				$user   = $data['DB_USER'];
-				$pass   = $data['DB_PASS'];
-				$dbname = $data['DB_NAME'];
+                $data = [];
+                foreach ($result['Parameters'] as $param) {
+                    $key = basename($param['Name']);
+                    $data[$key] = $param['Value'];
+                }
 
-				$dsn = "mysql:host=$host;dbname=$dbname;charset=utf8mb4";
-				self::$instance = new PDO($dsn, $user, $pass);
-				self::$instance->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                $host   = $data['DB_HOST'];
+                $user   = $data['DB_USER'];
+                $pass   = $data['DB_PASS'];
+                $dbname = $data['DB_NAME'];
 
-			} catch (AwsException $e) {
-				echo "Erro ao conectar o Banco de Dados (AWS): " . $e->getMessage();
-			}
+                $dsn = "mysql:host=$host;dbname=$dbname;charset=utf8mb4";
+                self::$instance = new PDO($dsn, $user, $pass);
+                self::$instance->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+            } catch (AwsException $e) {
+                echo "Erro ao buscar parâmetros no SSM: " . $e->getMessage();
+            } catch (PDOException $e) {
+                echo "Erro ao conectar ao banco: " . $e->getMessage();
+            }
+        }
+        return self::$instance;
     }
-    return self::$instance;
-  }
 }
 ?>

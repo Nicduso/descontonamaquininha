@@ -6,7 +6,7 @@
 	}
 	require_once ("../controller/DAO.class.php");
 	require_once ("../model/Register.class.php");
-	require_once ("../model/config.php");
+	require_once ("../model/Connection.class.php");
 
 		$dao = new DAO();
 		$successMessage = '';
