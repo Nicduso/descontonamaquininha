@@ -3,6 +3,7 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 use Aws\Ssm\SsmClient;
 use Aws\Exception\AwsException;
+use Dotenv\Dotenv;
 
 class Connection {
     public static $instance;
@@ -31,12 +32,20 @@ class Connection {
                 $pass   = $data['DB_PASS'];
                 $dbname = $data['DB_NAME'];
 
+            } catch (AwsException $e) {
+                $dotenv = Dotenv::createImmutable(__DIR__ . '/../../../');
+                $dotenv->load();
+
+                $host   = $_ENV['DB_HOST'] ?? 'localhost';
+                $user   = $_ENV['DB_USER'] ?? 'root';
+                $pass   = $_ENV['DB_PASS'] ?? '';
+                $dbname = $_ENV['DB_NAME'] ?? 'meubanco';
+            }
+
+            try {
                 $dsn = "mysql:host=$host;dbname=$dbname;charset=utf8mb4";
                 self::$instance = new PDO($dsn, $user, $pass);
                 self::$instance->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-            } catch (AwsException $e) {
-                echo "Erro ao buscar parâmetros no SSM: " . $e->getMessage();
             } catch (PDOException $e) {
                 echo "Erro ao conectar ao banco: " . $e->getMessage();
             }
@@ -44,4 +53,3 @@ class Connection {
         return self::$instance;
     }
 }
-?>
