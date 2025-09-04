@@ -1,5 +1,8 @@
 .card-content.mercado-pago {
-  background-color: #056BC8;
+  background-color: #FFDF00;
+}
+.machine-title.mercado-pago {
+	color: #000000;
 }
 
 body {
@@ -216,7 +219,6 @@ header {
 	.machine-title {
 		display: block;
 		max-width: 280px;
-		color: #FFFFFF;
 		font-weight: bold;
 		font-size: 24px;
 		text-align: center;

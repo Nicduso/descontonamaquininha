@@ -18,8 +18,8 @@ foreach ($results as $product) {
 	echo "<div class='card-item'>
 			<div class='card-content {$brandClass}'>
 				<img class='machine-image' src='{$photo}' alt='maquininha {$brandName}'>
-				<h2 class='machine-title'>Você ganhou {$discount}% na sua {$title}!</h2>
-				<a class='machine-link' href='{$link}'>Compre com desconto aqui!</a>
+				<h2 class='machine-title {$brandClass}'>Você ganhou {$discount}% na sua {$title}!</h2>
+				<a class='machine-link' href='{$link}' target='_blank'>Compre com desconto aqui!</a>
 			</div>
 			<button class='card-more'>Detalhes</button>
 		</div>";
