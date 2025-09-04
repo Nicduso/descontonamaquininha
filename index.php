@@ -4,6 +4,7 @@ require_once __DIR__ . '/public/php/controller/DAO.class.php';
 
 $dao = new DAO();
 $produtos = $dao->listAll();
+$brands = $dao->getUniqueBrands();
 ?>
 
 <!DOCTYPE html>
@@ -27,9 +28,9 @@ $produtos = $dao->listAll();
 						<div class="search-filter">
 							<select class="operator-select">
 								<option value="" selected>Operadora</option>
-								<option value="Mercado Pago">Mercado Pago</option>
-								<option value="Stone">Stone</option>
-								<option value="Cielo">Cielo</option>
+								<?php foreach ($brands as $brand): ?>
+									<option value="<?= htmlspecialchars($brand) ?>"><?= htmlspecialchars($brand) ?></option>
+								<?php endforeach; ?>
 							</select>
 							<div class="arrow-down-icon">
 								<i class="material-icons">arrow_drop_down</i>

@@ -38,7 +38,7 @@
 			return [];
 		}
 	}
-	
+
 		public function delete($id) {
 			try {
 				$sql = "DELETE FROM products WHERE id = :id";
@@ -94,6 +94,19 @@
 				return $products;
 			} catch (Exception $e) {
 				echo "Erro ao listar produtos: " . $e->getMessage();
+				return [];
+			}
+		}
+
+		public function getUniqueBrands() {
+			try {
+				$sql = "SELECT DISTINCT brand FROM products ORDER BY brand ASC";
+				$p_sql = Connection::getInstance()->prepare($sql);
+				$p_sql->execute();
+
+				return $p_sql->fetchAll(PDO::FETCH_COLUMN); 
+			} catch (Exception $e) {
+				echo "Erro ao buscar operadoras: " . $e->getMessage();
 				return [];
 			}
 		}

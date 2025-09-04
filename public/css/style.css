@@ -1,3 +1,7 @@
+.card-content.mercado-pago {
+  background-color: #056BC8;
+}
+
 body {
   font-family: "Arimo", sans-serif;
   background: #FFFFFF;
@@ -97,7 +101,6 @@ header {
 }
 
 .card-content {
-	background-color: #056BC8;
 	display: grid;
 	grid-template-columns: 1fr 1fr;
 	margin: 0 auto;
