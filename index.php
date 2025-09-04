@@ -27,9 +27,9 @@ $produtos = $dao->listAll();
 						<div class="search-filter">
 							<select class="operator-select">
 								<option value="" selected>Operadora</option>
-								<option value="">Mercado Pago</option>
-								<option value="">Stone</option>
-								<option value="">Cielo</option>
+								<option value="Mercado Pago">Mercado Pago</option>
+								<option value="Stone">Stone</option>
+								<option value="Cielo">Cielo</option>
 							</select>
 							<div class="arrow-down-icon">
 								<i class="material-icons">arrow_drop_down</i>
@@ -61,5 +61,11 @@ $produtos = $dao->listAll();
 				</div>
 			</div>
 		</main>
+		<script src="public/js/script.js"></script>
+		<?php if (!empty($successMessage)): ?>
+			<script>
+				loadPublicProducts();
+			</script>
+		<?php endif; ?>
 	</body>
 </html>

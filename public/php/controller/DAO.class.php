@@ -18,11 +18,18 @@
 			}
 		}
 
-	public function search($query = '') {
+	public function search($query = '', $brandFilter = '') {
 		try {
-			$sql = "SELECT * FROM products WHERE title LIKE :query OR brand LIKE :query";
+			$sql = "SELECT * FROM products WHERE (title LIKE :query OR brand LIKE :query)";
+			if (!empty($brandFilter)) {
+				$sql .= " AND brand = :brandFilter";
+			}
+
 			$p_sql = Connection::getInstance()->prepare($sql);
 			$p_sql->bindValue(":query", "%{$query}%");
+			if (!empty($brandFilter)) {
+				$p_sql->bindValue(":brandFilter", $brandFilter);
+			}
 			$p_sql->execute();
 
 			return $p_sql->fetchAll(PDO::FETCH_ASSOC);
@@ -31,7 +38,7 @@
 			return [];
 		}
 	}
-
+	
 		public function delete($id) {
 			try {
 				$sql = "DELETE FROM products WHERE id = :id";

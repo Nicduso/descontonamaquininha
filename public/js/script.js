@@ -36,3 +36,29 @@ document.addEventListener('DOMContentLoaded', () => {
 		loadProducts(this.value);
 	});
 });
+
+function loadPublicProducts(query = '', brand = '') {
+	fetch(`public/php/controller/search_cards.php?query=${encodeURIComponent(query)}&brand=${encodeURIComponent(brand)}`)
+		.then(response => response.text())
+		.then(html => {
+			const cardList = document.querySelector('.card-list');
+			if (cardList) {
+				cardList.innerHTML = html;
+			}
+		});
+}
+
+const searchInput = document.querySelector('.search-input');
+const operatorSelect = document.querySelector('.operator-select');
+
+if (searchInput && operatorSelect) {
+	searchInput.addEventListener('input', () => {
+		loadPublicProducts(searchInput.value, operatorSelect.value);
+	});
+
+	operatorSelect.addEventListener('change', () => {
+		loadPublicProducts(searchInput.value, operatorSelect.value);
+	});
+
+	loadPublicProducts();
+}
