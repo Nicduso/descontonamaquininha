@@ -26,7 +26,7 @@
 				$targetPath = $targetDir . $photoName;
 
 				if (move_uploaded_file($_FILES['photo']['tmp_name'], $targetPath)) {
-					$photoPath = 'images/' . $photoName;
+					$photoPath = 'public/images/products/' . $photoName;
 				}
 			}
 			$product->setPhoto($photoPath);

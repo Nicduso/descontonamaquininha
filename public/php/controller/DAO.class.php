@@ -32,8 +32,6 @@
 		}
 	}
 
-
-
 		public function delete($id) {
 			try {
 				$sql = "DELETE FROM products WHERE id = :id";
@@ -62,6 +60,34 @@
 				return $p_sql->execute();
 			} catch (Exception $e) {
 				echo "Erro ao alterar Registro: " . $e->getMessage();
+			}
+		}
+
+		public function listAll() {
+			try {
+				$sql = "SELECT * FROM products";
+				$p_sql = Connection::getInstance()->prepare($sql);
+				$p_sql->execute();
+
+				$results = $p_sql->fetchAll(PDO::FETCH_ASSOC);
+				$products = [];
+
+				foreach ($results as $row) {
+					$product = new Register();
+					$product->setBrand($row['brand']);
+					$product->setTitle($row['title']);
+					$product->setDiscount($row['discount']);
+					$product->setLinkPromo($row['link_promo']);
+					$product->setMoreInfo($row['more_info']);
+					$product->setPhoto($row['photo']);
+
+					$products[] = $product;
+				}
+
+				return $products;
+			} catch (Exception $e) {
+				echo "Erro ao listar produtos: " . $e->getMessage();
+				return [];
 			}
 		}
 	}

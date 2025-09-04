@@ -99,7 +99,7 @@ header {
 .card-content {
 	background-color: #056BC8;
 	display: grid;
-	grid-template-columns: auto 1fr;
+	grid-template-columns: 1fr 1fr;
 	margin: 0 auto;
 	gap: 13px;
 	padding: 20px 14px;
@@ -121,6 +121,13 @@ header {
 	background-color: #252525;
 	color: #FFFFFF;
 	font-weight: bold;
+}
+
+.machine-image {
+	width: 100%;
+	margin-bottom: 13px;
+	display: block;
+	margin: 0 auto;
 }
 
 .machine-link {
@@ -194,13 +201,6 @@ header {
 		display: block;
 		padding: 32px 24px 22px 24px;
 		align-items: center;
-	}
-
-	.machine-image {
-		width: 250px;
-		margin-bottom: 13px;
-		display: block;
-		margin: 0 auto;
 	}
 
 	.machine-link {

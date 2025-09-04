@@ -1,3 +1,11 @@
+<?php
+require_once __DIR__ . '/public/php/model/Register.class.php';
+require_once __DIR__ . '/public/php/controller/DAO.class.php';
+
+$dao = new DAO();
+$produtos = $dao->listAll();
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 	<head>
@@ -40,48 +48,18 @@
 			<div class="container">
 				<h1 class="page-title">Escolha a melhor maquininha para você e resgate o desconto!</h1>
 				<div class="card-list">
-					<div class="card-item">
-						<div class="card-content">
-							<img class="machine-image" src="public/images/products/machine-mp.png" alt="maquininha mercado pago">
-							<h2 class="machine-title">Você ganhou 81% na sua Point Click!</h2>
-							<a class="machine-link" href="https://www.mercadopago.com.br/point-mini">Compre com desconto aqui!</a>
+					<?php foreach ($produtos as $produto): ?>
+						<div class="card-item">
+							<div class="card-content">
+								<img class="machine-image" src="<?= $produto->getPhoto() ?>" alt="maquininha <?= htmlspecialchars($produto->getBrand()) ?>">
+								<h2 class="machine-title">Você ganhou <?= intval($produto->getDiscount()) ?>% na sua <?= htmlspecialchars($produto->getTitle()) ?>!</h2>
+								<a class="machine-link" href="<?= htmlspecialchars($produto->getLinkPromo()) ?>">Compre com desconto aqui!</a>
+							</div>
+							<button class="card-more">Detalhes</button>
 						</div>
-						<button class="card-more">Detalhes</button>
-					</div>
-					<div class="card-item">
-						<div class="card-content">
-							<img class="machine-image" src="public/images/products/machine-mp.png" alt="maquininha mercado pago">
-							<h2 class="machine-title">Você ganhou 81% na sua Point Click!</h2>
-							<a class="machine-link" href="https://www.mercadopago.com.br/point-mini">Compre com desconto aqui!</a>
-						</div>
-						<button class="card-more">Detalhes</button>
-					</div>
-					<div class="card-item">
-						<div class="card-content">
-							<img class="machine-image" src="public/images/products/machine-mp.png" alt="maquininha mercado pago">
-							<h2 class="machine-title">Você ganhou 81% na sua Point Click!</h2>
-							<a class="machine-link" href="https://www.mercadopago.com.br/point-mini">Compre com desconto aqui!</a>
-						</div>
-						<button class="card-more">Detalhes</button>
-					</div>
-					<div class="card-item">
-						<div class="card-content">
-							<img class="machine-image" src="public/images/products/machine-mp.png" alt="maquininha mercado pago">
-							<h2 class="machine-title">Você ganhou 81% na sua Point Click!</h2>
-							<a class="machine-link" href="https://www.mercadopago.com.br/point-mini">Compre com desconto aqui!</a>
-						</div>
-						<button class="card-more">Detalhes</button>
-					</div>
-					<div class="card-item">
-						<div class="card-content">
-							<img class="machine-image" src="public/images/products/machine-mp.png" alt="maquininha mercado pago">
-							<h2 class="machine-title">Você ganhou 81% na sua Point Click!</h2>
-							<a class="machine-link" href="https://www.mercadopago.com.br/point-mini">Compre com desconto aqui!</a>
-						</div>
-						<button class="card-more">Detalhes</button>
-					</div>
+					<?php endforeach; ?>
 				</div>
 			</div>
 		</main>
-  </body>
+	</body>
 </html>
