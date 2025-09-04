@@ -30,3 +30,4 @@ jobs:
         key: ${{ secrets.EC2_KEY }}
         source: "."
         target: "/var/www/html"
+
