@@ -13,14 +13,14 @@ jobs:
     - name: Baixar o código
       uses: actions/checkout@v2
 
-    - name: Limpar pasta no EC2
-      uses: appleboy/ssh-action@v0.1.4
-      with:
-        host: ${{ secrets.EC2_HOST }}
-        username: ${{ secrets.EC2_USER }}
-        key: ${{ secrets.EC2_KEY }}
-        script: |
-          find /var/www/html -mindepth 1 ! -name '.env' ! -name 'vendor' ! -name '.git' ! -name '.github' ! -name 'uploads' ! -name 'storage' -exec rm -rf {} +
+    # - name: Limpar pasta no EC2
+    #   uses: appleboy/ssh-action@v0.1.4
+    #   with:
+    #     host: ${{ secrets.EC2_HOST }}
+    #     username: ${{ secrets.EC2_USER }}
+    #     key: ${{ secrets.EC2_KEY }}
+    #     script: |
+    #       find /var/www/html -mindepth 1 ! -name '.env' ! -name 'vendor' ! -name '.git' ! -name '.github' ! -name 'uploads' ! -name 'storage' -exec rm -rf {} +
 
     - name: Enviar arquivos para EC2
       uses: appleboy/scp-action@v0.1.4
