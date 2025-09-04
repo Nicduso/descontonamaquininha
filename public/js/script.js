@@ -62,3 +62,19 @@ if (searchInput && operatorSelect) {
 
 	loadPublicProducts();
 }
+
+function showDetails(info) {
+	const overlay = document.createElement('div');
+	overlay.className = 'details-overlay';
+
+	const popup = document.createElement('div');
+	popup.className = 'details-popup';
+	popup.innerHTML = `
+		<h3 class='title-details'>Detalhes do Produto</h3>
+		<p>${info}</p>
+		<button class="close-details" onclick="document.body.removeChild(document.querySelector('.details-overlay'))">Fechar</button>
+	`;
+
+	overlay.appendChild(popup);
+	document.body.appendChild(overlay);
+}
