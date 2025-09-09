@@ -3,7 +3,7 @@ require_once __DIR__ . '/public/php/model/Register.class.php';
 require_once __DIR__ . '/public/php/controller/DAO.class.php';
 
 $dao = new DAO();
-$produtos = $dao->listAll();
+$products = $dao->listAll();
 $brands = $dao->getUniqueBrands();
 ?>
 
@@ -49,12 +49,12 @@ $brands = $dao->getUniqueBrands();
 			<div class="container">
 				<h1 class="page-title">Escolha a melhor maquininha para você e resgate o desconto!</h1>
 				<div class="card-list">
-					<?php foreach ($produtos as $produto): ?>
+					<?php foreach ($products as $product): ?>
 						<div class="card-item">
 							<div class="card-content">
-								<img class="machine-image" src="<?= $produto->getPhoto() ?>" alt="maquininha <?= htmlspecialchars($produto->getBrand()) ?>">
-								<h2 class="machine-title">Você ganhou <?= intval($produto->getDiscount()) ?>% na sua <?= htmlspecialchars($produto->getTitle()) ?>!</h2>
-								<a class="machine-link" href="<?= htmlspecialchars($produto->getLinkPromo()) ?>">Compre com desconto aqui!</a>
+								<img class="machine-image" src="<?= $product->getPhoto() ?>" alt="maquininha <?= htmlspecialchars($product->getBrandName()) ?>">
+								<h2 class="machine-title">Você ganhou <?= intval($product->getDiscount()) ?>% na sua <?= htmlspecialchars($product->getTitle()) ?>!</h2>
+								<a class="machine-link" href="<?= htmlspecialchars($product->getLinkPromo()) ?>">Compre com desconto aqui!</a>
 							</div>
 							<button class="card-more">Detalhes</button>
 						</div>
@@ -68,5 +68,9 @@ $brands = $dao->getUniqueBrands();
 				loadPublicProducts();
 			</script>
 		<?php endif; ?>
+		<a href="public/php/view/product_comparation.php" class="floating-button" title="Comparar produtos">
+			<i class="material-icons compare-icon">compare</i>
+			<span class="button-label">Comparar produtos</span>
+		</a>
 	</body>
 </html>

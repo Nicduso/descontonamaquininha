@@ -1,10 +1,3 @@
-.card-content.mercado-pago {
-  background-color: #FFDF00;
-}
-.machine-title.mercado-pago {
-	color: #000000;
-}
-
 body {
   font-family: "Arimo", sans-serif;
   background: #FFFFFF;
@@ -224,6 +217,56 @@ header {
 		text-align: center;
 		margin: 26px auto;
 	}
+
+	.floating-button {
+		padding: 18px;
+		position: fixed;
+		bottom: 20px;
+		right: 20px;
+		background-color: #6EC3D4;
+		color: #FFFFFF;
+		border: none;
+		border-radius: 30px;
+		height: 60px;
+		width: 60px;
+		display: flex;
+		align-items: center;
+		justify-content: left;
+		box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+		text-decoration: none;
+		font-size: 24px;
+		z-index: 1000;
+		overflow: hidden;
+		transition: width 0.4s ease, background-color 0.3s ease;
+	}
+
+	.floating-button:hover {
+		width: 220px;
+		background-color: #151515;
+		justify-content: flex-start;
+		padding-left: 20px;
+	}
+
+	.compare-icon {
+		flex-shrink: 0;
+		transition: margin-right 0.3s ease;
+	}
+
+	.floating-button:hover .compare-icon {
+		margin-right: 10px;
+	}
+
+	.button-label {
+		opacity: 0;
+		white-space: nowrap;
+		transition: opacity 0.3s ease 0.2s;
+		font-size: 16px;
+	}
+
+	.floating-button:hover .button-label {
+		opacity: 1;
+	}
+
 }
 
 @media screen and (min-width: 1366px) {

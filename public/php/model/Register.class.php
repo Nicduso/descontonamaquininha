@@ -1,7 +1,10 @@
 <?php
   class Register {
     private $id;
-		private $brand;
+		private $brandId;
+		private $brandName;
+		private $brandColor;
+		private $textColor;
 		private $title;
 		private $discount;
 		private $link_promo;
@@ -16,13 +19,38 @@
 			return $this->id;
 		}
 
-		public function setBrand($brand) {
-			$this->brand = $brand;
+		public function setBrandId($brandId) {
+			$this->brandId = $brandId;
 		}
 
-		public function getBrand() {
-			return $this->brand;
+		public function getBrandId() {
+			return $this->brandId;
 		}
+
+		public function setBrandName($brandName) {
+			$this->brandName = $brandName;
+		}
+
+		public function getBrandName() {
+			return $this->brandName;
+		}
+
+		public function setBrandColor($brandColor) {
+			$this->brandColor = $brandColor;
+		}
+
+		public function getBrandColor() {
+			return $this->brandColor;
+		}
+
+		public function setTextColor($textColor) {
+			$this->textColor = $textColor;
+		}
+
+		public function getTextColor() {
+			return $this->textColor;
+		}
+
 
 		public function setTitle($title) {
 			$this->title = $title;
