@@ -49,16 +49,7 @@ $brands = $dao->getUniqueBrands();
 			<div class="container">
 				<h1 class="page-title">Escolha a melhor maquininha para você e resgate o desconto!</h1>
 				<div class="card-list">
-					<?php foreach ($products as $product): ?>
-						<div class="card-item">
-							<div class="card-content">
-								<img class="machine-image" src="<?= $product->getPhoto() ?>" alt="maquininha <?= htmlspecialchars($product->getBrandName()) ?>">
-								<h2 class="machine-title">Você ganhou <?= intval($product->getDiscount()) ?>% na sua <?= htmlspecialchars($product->getTitle()) ?>!</h2>
-								<a class="machine-link" href="<?= htmlspecialchars($product->getLinkPromo()) ?>">Compre com desconto aqui!</a>
-							</div>
-							<button class="card-more">Detalhes</button>
-						</div>
-					<?php endforeach; ?>
+					<?php include 'public/php/view/render_cards.php'; ?>
 				</div>
 			</div>
 		</main>
