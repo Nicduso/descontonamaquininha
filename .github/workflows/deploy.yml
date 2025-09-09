@@ -13,20 +13,14 @@ jobs:
     - name: Baixar o código
       uses: actions/checkout@v2
 
-    - name: Enviar arquivos para EC2
-      uses: appleboy/scp-action@v0.1.4
+    - name: Deploy via SSH
+      uses: appleboy/ssh-action@v0.1.10
       with:
         host: ${{ secrets.EC2_HOST }}
         username: ${{ secrets.EC2_USER }}
         key: ${{ secrets.EC2_KEY }}
-        source: "."
-        target: "/var/www/html"
-
-# verificar se existe git no ec2
-  # executar dentro da maquina do ec2 o comando e verificar se aparece a versão do git, se aparecer está instalado
-      # git -v
-# atualizar deploy.yml para utilizar a action ssh-action
-  # no script navegar até a pasta que está o projeto
-  # dar um ls e verificar no painel de actions do github se funcionou aparecendo o conteudo da pasta
-  # funcionando substituir o ls pelo git pull origin main
-
+        script: |
+          cd /var/www/html
+          git fetch --all
+          git reset --hard origin/main
+          git pull origin main
