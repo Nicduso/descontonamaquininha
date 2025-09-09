@@ -6,8 +6,8 @@
 		<div class="card-content <?= $bgClass ?> <?= $textClass ?>">
 			<img class="machine-image" src="<?= $product->getPhoto() ?>" alt="maquininha <?= htmlspecialchars($product->getBrandName()) ?>">
 			<h2 class="machine-title">Você ganhou <?= intval($product->getDiscount()) ?>% na sua <?= htmlspecialchars($product->getTitle()) ?>!</h2>
-			<a class="machine-link" href="<?= htmlspecialchars($product->getLinkPromo()) ?>">Compre com desconto aqui!</a>
+			<a class="machine-link" target="_blank" href="<?= htmlspecialchars($product->getLinkPromo()) ?>">Compre com desconto aqui!</a>
 		</div>
-		<button class="card-more">Detalhes</button>
+		<button class="card-more" onclick="showDetails(`<?= htmlspecialchars($product->getMoreInfo(), ENT_QUOTES); ?>`)">Detalhes</button>
 	</div>
 <?php endforeach; ?>
