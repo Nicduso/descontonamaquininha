@@ -23,14 +23,5 @@ foreach ($results as $row) {
 	$products[] = $product;
 }
 
-echo "<style>";
-foreach ($products as $product) {
-	$bgClass = 'bg-' . str_replace('#', '', $product->getBrandColor());
-	$textClass = 'text-' . str_replace('#', '', $product->getTextColor());
-	echo ".$bgClass { background-color: {$product->getBrandColor()}; }";
-	echo ".$textClass { color: {$product->getTextColor()}; }";
-}
-echo "</style>";
-
 include __DIR__ . '/../view/render_cards.php';
 ?>
