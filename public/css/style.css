@@ -92,8 +92,17 @@ header {
 }
 
 .card-item {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
 	box-shadow: 4px 4px 4px 0px rgba(0,0,0,0.25);
 	border-radius: 16px;
+}
+
+.card-inner {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
 }
 
 .card-content {
@@ -104,6 +113,7 @@ header {
 	padding: 20px 14px;
 	align-items: center;
 	border-radius: 16px 16px 0 0;
+	flex-grow: 1;
 }
 
 .card-more {
@@ -156,6 +166,11 @@ header {
 		display: grid;
 		grid-template-columns: 1fr 1fr;
 	}
+
+	.card-item {
+    min-height: 400px;
+  }
+
 }
 
 @media screen and (min-width: 1070px) {
