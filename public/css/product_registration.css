@@ -237,6 +237,10 @@ tr:nth-child(even) {
 	border: #D9D9D9 1px solid;
 }
 
+.input-text {
+	width: 100%;
+}
+
 .percentual-text {
 	width: fit-content;
 	background-color: #FFFFFF;
@@ -382,7 +386,7 @@ tr:nth-child(even) {
 		margin: 0 auto;
 	}
 
-	.details-text, .normal-input-text {
+	.normal-input-text input {
 		width: 100%;
 	}
 

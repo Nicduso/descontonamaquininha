@@ -104,21 +104,21 @@
 					<input type="hidden" name="id" id="form-id">
 					<div class="form-line">
 						<label class="label-form">Operadora:</label>
-						<div class="normal-input-text"><input type="text" name="brand" required></div>
+						<div class="normal-input-text"><input type="text" name="brand" required class="input-text"></div>
 					</div>
 					<div class="form-line">
 						<label class="label-form">Modelo:</label>
-						<div class="normal-input-text"><input type="text" name="title" required></div>
+						<div class="normal-input-text"><input type="text" name="title" required class="input-text"></div>
 					</div>
 					<div class="form-line">
 						<label class="label-form">Desconto:</label>
 						<div class="normal-input-text">
-							<input type="text" placeholder="%" name="discount" required>
+							<input type="text" placeholder="%" name="discount" required class="input-text">
 						</div>
 					</div>
 					<div class="form-line">
 						<label class="label-form">Link:</label>
-						<div class="normal-input-text"><input type="text" class="link-text" name="link_promo"></div>
+						<div class="normal-input-text"><input type="text" class="link-text input-text" name="link_promo"></div>
 					</div>
 					<div class="form-line">
 						<label class="label-form">Detalhes:</label>
@@ -128,43 +128,43 @@
 					<h2 class="form-subtitle">Ficha Técnica:</h2>
 						<div class="form-line">
 							<label class="label-form">Inclui:</label>
-							<div class="normal-input-text"><input type="text" name="includes"></div>
+							<div class="normal-input-text"><input type="text" name="includes" class="input-text"></div>
 						</div>
 						<div class="form-line">
 							<label class="label-form">Tela:</label>
-							<div class="normal-input-text"><input type="text" name="screen"></div>
+							<div class="normal-input-text"><input type="text" name="screen" class="input-text"></div>
 						</div>
 						<div class="form-line">
 							<label class="label-form">Resolução:</label>
-							<div class="normal-input-text"><input type="text" name="resolution"></div>
+							<div class="normal-input-text"><input type="text" name="resolution" class="input-text"></div>
 						</div>
 						<div class="form-line">
 							<label class="label-form">Bateria:</label>
-							<div class="normal-input-text"><input type="text" name="battery"></div>
+							<div class="normal-input-text"><input type="text" name="battery" class="input-text"></div>
 						</div>
 						<div class="form-line">
 							<label class="label-form">Conexões:</label>
-							<div class="normal-input-text"><input type="text" name="connections"></div>
+							<div class="normal-input-text"><input type="text" name="connections" class="input-text"></div>
 						</div>
 						<div class="form-line">
 							<label class="label-form">Processador:</label>
-							<div class="normal-input-text"><input type="text" name="processor"></div>
+							<div class="normal-input-text"><input type="text" name="processor" class="input-text"></div>
 						</div>
 						<div class="form-line">
 							<label class="label-form">Peso:</label>
-							<div class="normal-input-text"><input type="text" name="weight"></div>
+							<div class="normal-input-text"><input type="text" name="weight" class="input-text"></div>
 						</div>
 						<div class="form-line">
 							<label class="label-form">Dimensões:</label>
-							<div class="normal-input-text"><input type="text" name="dimensions"></div>
+							<div class="normal-input-text"><input type="text" name="dimensions" class="input-text"></div>
 						</div>
 						<div class="form-line">
 							<label class="label-form">Memórias:</label>
-							<div class="normal-input-text"><input type="text" name="memories"></div>
+							<div class="normal-input-text"><input type="text" name="memories" class="input-text"></div>
 						</div>
 						<div class="form-line">
 							<label class="label-form">Sist. Oper.:</label>
-							<div class="normal-input-text"><input type="text" name="operating_system"></div>
+							<div class="normal-input-text"><input type="text" name="operating_system" class="input-text"></div>
 						</div>
 						<div class="form-line">
 							<label class="label-form">Frete:</label>
@@ -181,10 +181,10 @@
 					<h2 class="form-subtitle">Taxas:</h2>
 						<div id="taxes-container">
 							<div class="tax-block">
-								<div class="input-tax"><input type="text" name="taxes[0][billing]" placeholder="Cobrança"></div>
-								<div class="input-tax"><input type="text" name="taxes[0][debit]" placeholder="Débito"></div>
-								<div class="input-tax"><input type="text" name="taxes[0][credit]" placeholder="Crédito"></div>
-								<div class="input-tax"><input type="text" name="taxes[0][other]" placeholder="Outros"></div>
+								<div class="input-tax"><input type="text" name="taxes[0][billing]" placeholder="Cobrança" class="input-text"></div>
+								<div class="input-tax"><input type="text" name="taxes[0][debit]" placeholder="Débito" class="input-text"></div>
+								<div class="input-tax"><input type="text" name="taxes[0][credit]" placeholder="Crédito" class="input-text"></div>
+								<div class="input-tax"><input type="text" name="taxes[0][other]" placeholder="Outros" class="input-text"></div>
 							</div>
 						</div>
 						<button type="button" onclick="addTaxBlock()" class="add-tax-button">+ Adicionar Taxa</button>
