@@ -114,7 +114,6 @@ main {
 	background-color: #FFFFFF;
 	border-radius: 16px;
 	height: 40px;
-	/* width: 245px; */
 	align-items: center;
 	display: flex;
 	padding: 0 20px;
@@ -206,6 +205,12 @@ tr:nth-child(even) {
 	margin-bottom: 38px;
 }
 
+.form-subtitle {
+	font-size: 20px;
+	font-weight: bold;
+	margin: 10px 0;
+}
+
 .label-form {
 	font-size: 24px;
 	width: 125px;
@@ -260,6 +265,35 @@ tr:nth-child(even) {
   outline: none;
 }
 
+.tax-block {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+  gap: 10px;
+  width: 100%;
+  box-sizing: border-box;
+	margin-top: 5px;
+}
+
+.input-tax {
+  flex: 1;
+  min-width: 0;
+  background-color: #FFFFFF;
+  border-radius: 16px;
+  font-size: 20px;
+  padding: 5px 20px;
+  border: #D9D9D9 1px solid;
+  box-sizing: border-box;
+}
+
+.add-tax-button {
+	height: 40px;
+	font-size: 14px;
+	border: none;
+	border-radius: 8px;
+	box-shadow: 4px 4px 4px 0px rgba(0,0,0,0.25);
+}
+
 .form-actions {
 	margin: 0 auto;
 	display: flex;
@@ -275,7 +309,7 @@ tr:nth-child(even) {
 	box-shadow: 4px 4px 4px 0px rgba(0,0,0,0.25);
 }
 
-.form-button:hover {
+.form-button:hover, .add-tax-button:hover {
 	cursor: pointer;
 	background-color: #151515;
 	color: #FFFFFF;

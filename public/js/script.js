@@ -17,16 +17,44 @@ function loadProducts(title = '') {
 
 function fillForm(product) {
 	document.getElementById('form-id').value = product.id;
-	document.querySelector('[name="brand"]').value = product.brand;
+	document.querySelector('[name="brand"]').value = product.brand_name;
 	document.querySelector('[name="title"]').value = product.title;
 	document.querySelector('[name="discount"]').value = product.discount;
 	document.querySelector('[name="link_promo"]').value = product.link_promo;
 	document.querySelector('[name="more_info"]').value = product.more_info;
-	document.getElementById('file-name').textContent = 'Nenhum ficheiro selecionado';
 
-	const submitBtn = document.getElementById('submit-button');
-	submitBtn.value = 'Alterar';
-	submitBtn.textContent = 'Alterar';
+	document.querySelector('[name="includes"]').value = product.includes || '';
+	document.querySelector('[name="screen"]').value = product.screen || '';
+	document.querySelector('[name="resolution"]').value = product.resolution || '';
+	document.querySelector('[name="battery"]').value = product.battery || '';
+	document.querySelector('[name="connections"]').value = product.connections || '';
+	document.querySelector('[name="processor"]').value = product.processor || '';
+	document.querySelector('[name="weight"]').value = product.weight || '';
+	document.querySelector('[name="dimensions"]').value = product.dimensions || '';
+	document.querySelector('[name="memories"]').value = product.memories || '';
+	document.querySelector('[name="operating_system"]').value = product.operating_system || '';
+	document.querySelector('[name="free_shipping"]').value = product.free_shipping || '';
+
+	const container = document.getElementById('taxes-container');
+	container.innerHTML = '';
+	taxIndex = 0;
+
+	fetch(`../controller/get_taxes.php?brand_id=${product.brand_id}`)
+		.then(response => response.json())
+		.then(taxes => {
+			taxes.forEach(tax => {
+				const block = document.createElement('div');
+				block.className = 'tax-block';
+				block.innerHTML = `
+					<input type="text" name="taxes[${taxIndex}][billing]" value="${tax.billing}" placeholder="Cobrança">
+					<input type="text" name="taxes[${taxIndex}][debit]" value="${tax.debit}" placeholder="Débito">
+					<input type="text" name="taxes[${taxIndex}][credit]" value="${tax.credit}" placeholder="Crédito">
+					<input type="text" name="taxes[${taxIndex}][other]" value="${tax.other}" placeholder="Outros">
+				`;
+				container.appendChild(block);
+				taxIndex++;
+			});
+		});
 }
 
 function debounce(func, delay) {
@@ -105,4 +133,19 @@ function showDetails(info) {
 
 	overlay.appendChild(popup);
 	document.body.appendChild(overlay);
+}
+
+var taxIndex = 1;
+function addTaxBlock() {
+	const container = document.getElementById('taxes-container');
+	const block = document.createElement('div');
+	block.className = 'tax-block';
+	block.innerHTML = `
+		<div class="input-tax"><input type="text" name="taxes[${taxIndex}][billing]" placeholder="Cobrança"></div>
+		<div class="input-tax"><input type="text" name="taxes[${taxIndex}][debit]" placeholder="Débito"></div>
+		<div class="input-tax"><input type="text" name="taxes[${taxIndex}][credit]" placeholder="Crédito"></div>
+		<div class="input-tax"><input type="text" name="taxes[${taxIndex}][other]" placeholder="Outros"></div>
+	`;
+	container.appendChild(block);
+	taxIndex++;
 }
