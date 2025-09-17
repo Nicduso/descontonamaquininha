@@ -106,6 +106,7 @@ header {
 }
 
 .card-content {
+	width: 100%;
 	display: grid;
 	grid-template-columns: 1fr 1fr;
 	margin: 0 auto;
@@ -133,7 +134,7 @@ header {
 }
 
 .machine-image {
-	width: 100%;
+	max-height: 135px;
 	margin-bottom: 13px;
 	display: block;
 	margin: 0 auto;
@@ -167,9 +168,9 @@ header {
 		grid-template-columns: 1fr 1fr;
 	}
 
-	.card-item {
-    min-height: 400px;
-  }
+	.machine-image {
+		max-height: 155px;
+	}
 
 }
 
@@ -231,6 +232,10 @@ header {
 		font-size: 24px;
 		text-align: center;
 		margin: 26px auto;
+	}
+
+	.machine-image {
+		max-height: 252px;
 	}
 
 	.floating-button {
@@ -308,6 +313,10 @@ header {
 	font-size: 20px;
 	margin: 20px 0;
 }
+
+.machine-image {
+		max-height: 250px;
+	}
 
 li {
 	margin: 10px;
