@@ -39,7 +39,7 @@ function fillForm(product) {
 	container.innerHTML = '';
 	taxIndex = 0;
 
-	fetch(`../controller/get_taxes.php?brand_id=${product.brand_id}`)
+	fetch(`../controller/get_taxes.php?technical_id=${product.technical_id}`)
 		.then(response => response.json())
 		.then(taxes => {
 			taxes.forEach(tax => {

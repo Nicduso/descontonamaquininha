@@ -89,6 +89,8 @@
 				$conn->beginTransaction();
 
 				$productId = $this->insert($product);
+				$product->setId($productId);
+
 				$technicalId = $this->insertTechnical($product);
 
 				foreach ($taxes as $tax) {
@@ -97,21 +99,43 @@
 				}
 
 				$conn->commit();
-				return true;
 			} catch(Exception $e) {
 				$conn->rollBack();
-				echo "Erro ao inserir dados completos: " . $e->getMessage();
-				return false;
+				echo "Erro ao cadastrar produto completo: " . $e->getMessage();
 			}
 		}
 
 		public function search($query = '', $brandFilter = '') {
 			try {
-				$sql = "SELECT p.*, b.brand_name, b.color_brand, b.color_text, t.*
-						FROM products p
-						JOIN brands b ON p.brand_id = b.id
-						LEFT JOIN technical t ON t.product_id = p.id
-						WHERE (p.title LIKE :query OR b.brand_name LIKE :query)";
+				$sql = "
+					SELECT
+						p.id AS product_id,
+						p.title,
+						p.discount,
+						p.link_promo,
+						p.more_info,
+						p.photo,
+						b.brand_name,
+						b.color_brand,
+						b.color_text,
+						t.id AS technical_id,
+						t.includes,
+						t.screen,
+						t.resolution,
+						t.battery,
+						t.connections,
+						t.processor,
+						t.weight,
+						t.dimensions,
+						t.memories,
+						t.operating_system,
+						t.free_shipping
+					FROM products p
+					JOIN brands b ON p.brand_id = b.id
+					LEFT JOIN technical t ON t.product_id = p.id
+					WHERE (p.title LIKE :query OR b.brand_name LIKE :query)
+				";
+
 				if (!empty($brandFilter)) {
 					$sql .= " AND b.brand_name = :brandFilter";
 				}
@@ -132,11 +156,33 @@
 
 		public function delete($id) {
 			try {
-				$sql = "DELETE FROM products WHERE id = :id";
-				$p_sql = Connection::getInstance()->prepare($sql);
-				$p_sql->bindValue(":id", $id);
+				$conn = Connection::getInstance();
 
-				return $p_sql->execute();
+				$sqlGetTech = "SELECT id FROM technical WHERE product_id = :id";
+				$stmtGetTech = $conn->prepare($sqlGetTech);
+				$stmtGetTech->bindValue(":id", $id);
+				$stmtGetTech->execute();
+				$technical = $stmtGetTech->fetch(PDO::FETCH_ASSOC);
+
+				if ($technical) {
+					$technicalId = $technical['id'];
+
+					$sqlUnlink = "DELETE FROM technical_taxes WHERE technical_id = :tech_id";
+					$stmtUnlink = $conn->prepare($sqlUnlink);
+					$stmtUnlink->bindValue(":tech_id", $technicalId);
+					$stmtUnlink->execute();
+
+					$sqlTech = "DELETE FROM technical WHERE id = :tech_id";
+					$stmtTech = $conn->prepare($sqlTech);
+					$stmtTech->bindValue(":tech_id", $technicalId);
+					$stmtTech->execute();
+				}
+
+				$sqlProd = "DELETE FROM products WHERE id = :id";
+				$stmtProd = $conn->prepare($sqlProd);
+				$stmtProd->bindValue(":id", $id);
+				return $stmtProd->execute();
+
 			} catch(Exception $e) {
 				echo "Não foi possível excluir: " . $e->getMessage();
 			}
