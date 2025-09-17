@@ -29,12 +29,29 @@ function fillForm(product) {
 	submitBtn.textContent = 'Alterar';
 }
 
+function debounce(func, delay) {
+	let timeout;
+	return function (...args) {
+		clearTimeout(timeout);
+		timeout = setTimeout(() => func.apply(this, args), delay);
+	};
+}
+
 document.addEventListener('DOMContentLoaded', () => {
 	loadProducts();
 
-	document.getElementById('search-input').addEventListener('input', function () {
-		loadProducts(this.value);
-	});
+	const searchInput = document.getElementById('search-input');
+
+	const debouncedSearch = debounce(function () {
+		const value = searchInput.value.trim();
+		if (value.length >= 3) {
+			loadProducts(value);
+		} else if (value.length === 0) {
+			loadProducts();
+		}
+	}, 500);
+
+	searchInput.addEventListener('input', debouncedSearch);
 });
 
 function loadPublicProducts(query = '', brand = '') {
@@ -52,12 +69,23 @@ const searchInput = document.querySelector('.search-input');
 const operatorSelect = document.querySelector('.operator-select');
 
 if (searchInput && operatorSelect) {
-	searchInput.addEventListener('input', () => {
-		loadPublicProducts(searchInput.value, operatorSelect.value);
-	});
+	const debouncedPublicSearch = debounce(function () {
+		const query = searchInput.value.trim();
+		const brand = operatorSelect.value;
+		if (query.length >= 3) {
+			loadPublicProducts(query, brand);
+		} else if (query.length === 0) {
+			loadPublicProducts('', brand);
+		}
+	}, 500);
+
+	searchInput.addEventListener('input', debouncedPublicSearch);
 
 	operatorSelect.addEventListener('change', () => {
-		loadPublicProducts(searchInput.value, operatorSelect.value);
+		const query = searchInput.value.trim();
+		if (query.length >= 3 || query.length === 0) {
+			loadPublicProducts(query, operatorSelect.value);
+		}
 	});
 
 	loadPublicProducts();
