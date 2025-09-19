@@ -1,5 +1,4 @@
 # descontonamaquininha
-website that compares card machine prices and offers discounts
 
 Este projeto oferece uma plataforma para lojistas que estão procurando maquininhas de cartão com descontos especiais. Através deste site, os usuários podem ver detalhes sobre as maquininhas e acessar links para comprá-las com desconto.
 
@@ -13,21 +12,18 @@ Este projeto oferece uma plataforma para lojistas que estão procurando maquinin
 ## Rodando projeto localmente:
 1. Clonar o repositório
 
-bash
-```
+```bash
 git clone https://github.com/Nicduso/descontonamaquininha.git
 ```
 2. Mover o projeto para o XAMPP
 Copie a pasta clonada para o diretório do XAMPP:
 
-bash
-```
+```bash
 C:\xampp\htdocs\
 ```
 Exemplo:
 
-bash
-```
+```bash
 C:\xampp\htdocs\descontonamaquininha\
 ```
 3. Instalar o Composer, se ainda não tiver o Composer instalado:
@@ -36,25 +32,27 @@ Baixe em: https://getcomposer.org/download
 
 Após instalar, abra o terminal e verifique com:
 
-bash
-```
+```bash
 composer --version
 ```
 4. Instalar dependências do projeto
 Dentro da pasta do projeto, execute:
 
-bash
-```
+```bash
 composer install
 ```
 Isso vai instalar todas as bibliotecas necessárias, incluindo o carregador de variáveis de ambiente.
 
 5. Criar o arquivo .env
 
-Na raiz do projeto, crie um arquivo chamado .env com os dados de conexão do banco:
+Na raiz do projeto, crie um arquivo chamado .env com os dados de conexão do banco com o comando:
+
+```bash
+cp .env.example .env
+```
 
 Código
-```
+```bash
 DB_HOST=localhost
 DB_USER=root
 DB_PASS=senha123
@@ -79,7 +77,8 @@ Se tudo estiver configurado corretamente, o projeto estará funcionando com cone
 
 ## Estrutura do Banco de Dados:
 Para rodar o projeto localmente, crie o banco e as tabelas com o seguinte script SQL:
-```
+
+```SQL
 -- Criar banco de dados
 CREATE DATABASE desconto_na_maquininha;
 
@@ -104,12 +103,14 @@ CREATE TABLE users (
 
 ## Tecnologias Usadas
 
-- HTML
-- CSS
-- PHP e JavaScript (para interação dinâmica)
+- HTML5
+- CSS3
+- PHP 8.*
+- JavaScript (para interação dinâmica)
 - MySQL
 - Material Icons (para ícones)
-- Hospedagem AWS
+- Docker
+- Hospedagem AWS (EC2, RDS, VPC)
 
 ## Ideias para atualizações futuras:
 - Comparativo de maquinhas/produtos

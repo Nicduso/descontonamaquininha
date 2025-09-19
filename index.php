@@ -1,6 +1,6 @@
 <?php
-require_once __DIR__ . '/public/php/model/Register.class.php';
-require_once __DIR__ . '/public/php/controller/DAO.class.php';
+require_once __DIR__ . '/src/model/Register.class.php';
+require_once __DIR__ . '/src/controller/DAO.class.php';
 
 $dao = new DAO();
 $products = $dao->listAll();
@@ -49,7 +49,7 @@ $brands = $dao->getUniqueBrands();
 			<div class="container">
 				<h1 class="page-title">Escolha a melhor maquininha para você e resgate o desconto!</h1>
 				<div class="card-list">
-					<?php include 'public/php/view/render_cards.php'; ?>
+					<?php include 'src/view/render_cards.php'; ?>
 				</div>
 			</div>
 		</main>
@@ -59,7 +59,7 @@ $brands = $dao->getUniqueBrands();
 				loadPublicProducts();
 			</script>
 		<?php endif; ?>
-		<a href="public/php/view/product_comparation.php" class="floating-button" title="Comparar produtos">
+		<a href="src/view/product_comparation.php" class="floating-button" title="Comparar produtos">
 			<i class="material-icons compare-icon">compare</i>
 			<span class="button-label">Comparar produtos</span>
 		</a>

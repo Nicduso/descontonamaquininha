@@ -51,7 +51,7 @@ if (isset($_GET['logout'])) {
 <head>
     <meta charset="UTF-8">
     <title>Cadastro de Usuário</title>
-		<link rel="stylesheet" href="../../css/user_registration.css">
+		<link rel="stylesheet" href="../../public/css/user_registration.css">
 </head>
 <body>
     <header>

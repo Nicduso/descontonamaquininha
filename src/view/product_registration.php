@@ -39,7 +39,7 @@
 			$photoPath = '';
 			if (isset($_FILES['photo']) && $_FILES['photo']['error'] == UPLOAD_ERR_OK) {
 				$photoName = basename($_FILES['photo']['name']);
-				$targetDir = '../../images/products/';
+				$targetDir = '../../public/images/products/';
 				$targetPath = $targetDir . $photoName;
 				if (move_uploaded_file($_FILES['photo']['tmp_name'], $targetPath)) {
 					$photoPath = 'public/images/products/' . $photoName;
@@ -70,16 +70,16 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="shortcut icon" href="../../images/favicon.png" type="image/x-icon">
+	<link rel="shortcut icon" href="../../public/images/favicon.png" type="image/x-icon">
 	<title>Manutenção de registros</title>
-	<link rel="stylesheet" href="../../css/reset.css">
-	<link rel="stylesheet" href="../../css/product_registration.css">
+	<link rel="stylesheet" href="../../public/css/reset.css">
+	<link rel="stylesheet" href="../../public/css/product_registration.css">
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Arimo&display=swap" rel="stylesheet">
 </head>
 <body>
 	<header>
-		<img class="image-logo" src="../../images/logo-desktop.svg" alt="Logo desconto na maquininha">
+		<img class="image-logo" src="../../public/images/logo-desktop.svg" alt="Logo desconto na maquininha">
 		<form method="POST" action="../controller/logout.php">
 			<a href="user_registration.php" class="user-button">Cadastro Usuário</a>
 			<button type="submit" class="exit-button">Sair</button>
@@ -210,7 +210,7 @@
 			<p class="info-text">Há mais funções acessíveis nas resoluções de desktop.</p>
 		</div>
 	</main>
-	<script src="../../js/script.js"></script>
+	<script src="../../public/js/script.js"></script>
 	<?php if (!empty($successMessage)): ?>
 		<script>
 			loadProducts();

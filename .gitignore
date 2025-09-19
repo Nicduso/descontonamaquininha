@@ -3,5 +3,5 @@
 *.pem
 /vendor/
 /composer.phar
-/public/php/model/ConnectionLocal.class.php
-/public/php/view/local_test.php
+/src/model/ConnectionLocal.class.php
+/src/view/local_test.php

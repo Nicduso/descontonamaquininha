@@ -29,15 +29,15 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="shortcut icon" href="../../images/favicon.png" type="image/x-icon">
+	<link rel="shortcut icon" href="../../public/images/favicon.png" type="image/x-icon">
 	<title>Painel Admin</title>
-	<link rel="stylesheet" href="../../css/reset.css">
-	<link rel="stylesheet" href="../../css/admin_panel.css">
+	<link rel="stylesheet" href="../../public/css/reset.css">
+	<link rel="stylesheet" href="../../public/css/admin_panel.css">
 	<link href="https://fonts.googleapis.com/css2?family=Arimo&display=swap" rel="stylesheet">
 </head>
 <body>
 	<header>
-		<img class="image-logo" src="../../images/logo-mobile-extends.svg" alt="Logo desconto na maquininha">
+		<img class="image-logo" src="../../public/images/logo-mobile-extends.svg" alt="Logo desconto na maquininha">
 	</header>
 	<main>
 		<div class="panel">

@@ -1,5 +1,5 @@
 function loadProducts(title = '') {
-  fetch(`public/php/controller/search_products.php?title=${encodeURIComponent(title)}`)
+  fetch(`../../src/controller/search_products.php?title=${encodeURIComponent(title)}`)
     .then(response => response.text())
     .then(html => {
       const table = document.querySelector('.products-list table');
@@ -41,7 +41,7 @@ function fillForm(product) {
   container.innerHTML = '';
   taxIndex = 0;
 
-  fetch(`../controller/get_taxes.php?technical_id=${product.technical_id}`)
+  fetch(`../../src/controller/get_taxes.php?technical_id=${product.technical_id}`)
     .then(response => response.json())
     .then(taxes => {
       taxes.forEach(tax => {
@@ -114,12 +114,16 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function loadPublicProducts(query = '', brand = '') {
-  fetch(`public/php/controller/search_cards.php?query=${encodeURIComponent(query)}&brand_name=${encodeURIComponent(brand)}`)
+  fetch(`src/controller/search_cards.php?query=${encodeURIComponent(query)}&brand_name=${encodeURIComponent(brand)}`)
     .then(response => response.text())
     .then(html => {
       const cardList = document.querySelector('.card-list');
       if (cardList) {
-        cardList.innerHTML = html;
+				cardList.innerHTML = html;
+
+				if (!html.trim()) {
+					cardList.innerHTML = '<p>Nenhum produto foi encontrado</p>';
+				}
       }
     });
 }
@@ -150,6 +154,7 @@ function addTaxBlock() {
     <div class="input-tax"><input type="text" name="taxes[${taxIndex}][debit]" placeholder="Débito"></div>
     <div class="input-tax"><input type="text" name="taxes[${taxIndex}][credit]" placeholder="Crédito"></div>
     <div class="input-tax"><input type="text" name="taxes[${taxIndex}][other]" placeholder="Outros"></div>
+    <button class="remove-tax" onclick="this.parentElement.remove()">Remover</button>
   `;
   container.appendChild(block);
   taxIndex++;
