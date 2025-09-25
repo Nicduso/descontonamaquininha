@@ -107,8 +107,6 @@ header {
 
 .card-content {
 	width: 100%;
-	display: grid;
-	grid-template-columns: 1fr 1fr;
 	margin: 0 auto;
 	gap: 13px;
 	padding: 20px 14px;
@@ -162,7 +160,12 @@ header {
 }
 
 .machine-title {
-	display: none;
+	display: block;
+	max-width: 280px;
+	font-weight: bold;
+	font-size: 24px;
+	text-align: center;
+	margin: 26px auto;
 }
 
 @media screen and (min-width: 768px) {
@@ -228,15 +231,6 @@ header {
 		font-size: 24px;
 		max-width: 230px;
 		margin: 0 auto;
-	}
-
-	.machine-title {
-		display: block;
-		max-width: 280px;
-		font-weight: bold;
-		font-size: 24px;
-		text-align: center;
-		margin: 26px auto;
 	}
 
 	.machine-image {
@@ -361,4 +355,12 @@ li {
 .close-details:hover {
 	background-color: #6EC3D4;
 	color: #000000;
+}
+
+.product-not-found {
+	font-size: 20px;
+}
+
+.floating-button {
+	display: none;
 }

@@ -122,7 +122,7 @@ function loadPublicProducts(query = '', brand = '') {
 				cardList.innerHTML = html;
 
 				if (!html.trim()) {
-					cardList.innerHTML = '<p>Nenhum produto foi encontrado</p>';
+					cardList.innerHTML = '<p class="product-not-found">Nenhum produto foi encontrado.</p>';
 				}
       }
     });
