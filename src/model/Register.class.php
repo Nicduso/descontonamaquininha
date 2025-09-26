@@ -10,7 +10,6 @@
 		private $link_promo;
 		private $more_info;
 		private $photo;
-		private $technicalId;
 		private $includes;
 		private $screen;
 		private $resolution;
@@ -107,14 +106,6 @@
 
 		public function getPhoto() {
 			return $this->photo;
-		}
-
-		public function setTechnicalId($technicalId) {
-			$this->technicalId = $technicalId;
-		}
-
-		public function getTechnicalId() {
-			return $this->technicalId;
 		}
 
 		public function setIncludes($includes) {

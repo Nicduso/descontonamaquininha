@@ -5,8 +5,16 @@
 	class DAO {
 		public function insert(Register $product) {
 			try {
-				$sql = "INSERT INTO products (brand_id, title, discount, link_promo, more_info, photo)
-						VALUES (:brand_id, :title, :discount, :link_promo, :more_info, :photo)";
+				$sql = "INSERT INTO products (
+					brand_id, title, discount, link_promo, more_info, photo,
+					includes, screen, resolution, battery, connections,
+					processor, weight, dimensions, memories, operating_system, free_shipping
+				) VALUES (
+					:brand_id, :title, :discount, :link_promo, :more_info, :photo,
+					:includes, :screen, :resolution, :battery, :connections,
+					:processor, :weight, :dimensions, :memories, :operating_system, :free_shipping
+				)";
+
 				$p_sql = Connection::getInstance()->prepare($sql);
 				$p_sql->bindValue(':brand_id', $product->getBrandId());
 				$p_sql->bindValue(':title', $product->getTitle());
@@ -14,25 +22,6 @@
 				$p_sql->bindValue(':link_promo', $product->getLinkPromo());
 				$p_sql->bindValue(':more_info', $product->getMoreInfo());
 				$p_sql->bindValue(':photo', $product->getPhoto());
-
-				$p_sql->execute();
-				return Connection::getInstance()->lastInsertId();
-			} catch(Exception $e) {
-				echo "Erro ao registrar produto: " . $e->getMessage();
-			}
-		}
-
-		public function insertTechnical(Register $product) {
-			try {
-				$sql = "INSERT INTO technical (
-					brand_id, includes, screen, resolution, battery, connections,
-					processor, weight, dimensions, memories, operating_system, free_shipping, product_id
-				) VALUES (
-					:brand_id, :includes, :screen, :resolution, :battery, :connections,
-					:processor, :weight, :dimensions, :memories, :operating_system, :free_shipping, :product_id
-				)";
-				$p_sql = Connection::getInstance()->prepare($sql);
-				$p_sql->bindValue(':brand_id', $product->getBrandId());
 				$p_sql->bindValue(':includes', $product->getIncludes());
 				$p_sql->bindValue(':screen', $product->getScreen());
 				$p_sql->bindValue(':resolution', $product->getResolution());
@@ -44,12 +33,11 @@
 				$p_sql->bindValue(':memories', $product->getMemories());
 				$p_sql->bindValue(':operating_system', $product->getOperatingSystem());
 				$p_sql->bindValue(':free_shipping', $product->getFreeShipping());
-				$p_sql->bindValue(':product_id', $product->getId());
 
 				$p_sql->execute();
 				return Connection::getInstance()->lastInsertId();
 			} catch(Exception $e) {
-				echo "Erro ao registrar ficha técnica: " . $e->getMessage();
+				echo "Erro ao registrar produto: " . $e->getMessage();
 			}
 		}
 
@@ -70,16 +58,16 @@
 			}
 		}
 
-		public function linkTechnicalTax($technicalId, $taxId) {
+		public function linkProductTax($productId, $taxId) {
 			try {
-				$sql = "INSERT INTO technical_taxes (technical_id, tax_id)
-						VALUES (:technical_id, :tax_id)";
+				$sql = "INSERT INTO technical_taxes (product_id, tax_id)
+						VALUES (:product_id, :tax_id)";
 				$p_sql = Connection::getInstance()->prepare($sql);
-				$p_sql->bindValue(':technical_id', $technicalId);
+				$p_sql->bindValue(':product_id', $productId);
 				$p_sql->bindValue(':tax_id', $taxId);
 				return $p_sql->execute();
 			} catch(Exception $e) {
-				echo "Erro ao vincular taxa à ficha técnica: " . $e->getMessage();
+				echo "Erro ao vincular taxa ao produto: " . $e->getMessage();
 			}
 		}
 
@@ -91,11 +79,9 @@
 				$productId = $this->insert($product);
 				$product->setId($productId);
 
-				$technicalId = $this->insertTechnical($product);
-
 				foreach ($taxes as $tax) {
 					$taxId = $this->insertTax($tax);
-					$this->linkTechnicalTax($technicalId, $taxId);
+					$this->linkProductTax($productId, $taxId);
 				}
 
 				$conn->commit();
@@ -115,24 +101,22 @@
 						p.link_promo,
 						p.more_info,
 						p.photo,
+						p.includes,
+						p.screen,
+						p.resolution,
+						p.battery,
+						p.connections,
+						p.processor,
+						p.weight,
+						p.dimensions,
+						p.memories,
+						p.operating_system,
+						p.free_shipping,
 						b.brand_name,
 						b.color_brand,
-						b.color_text,
-						t.id AS technical_id,
-						t.includes,
-						t.screen,
-						t.resolution,
-						t.battery,
-						t.connections,
-						t.processor,
-						t.weight,
-						t.dimensions,
-						t.memories,
-						t.operating_system,
-						t.free_shipping
+						b.color_text
 					FROM products p
 					JOIN brands b ON p.brand_id = b.id
-					LEFT JOIN technical t ON t.product_id = p.id
 					WHERE (p.title LIKE :query OR b.brand_name LIKE :query)
 				";
 
@@ -158,25 +142,10 @@
 			try {
 				$conn = Connection::getInstance();
 
-				$sqlGetTech = "SELECT id FROM technical WHERE product_id = :id";
-				$stmtGetTech = $conn->prepare($sqlGetTech);
-				$stmtGetTech->bindValue(":id", $id);
-				$stmtGetTech->execute();
-				$technical = $stmtGetTech->fetch(PDO::FETCH_ASSOC);
-
-				if ($technical) {
-					$technicalId = $technical['id'];
-
-					$sqlUnlink = "DELETE FROM technical_taxes WHERE technical_id = :tech_id";
-					$stmtUnlink = $conn->prepare($sqlUnlink);
-					$stmtUnlink->bindValue(":tech_id", $technicalId);
-					$stmtUnlink->execute();
-
-					$sqlTech = "DELETE FROM technical WHERE id = :tech_id";
-					$stmtTech = $conn->prepare($sqlTech);
-					$stmtTech->bindValue(":tech_id", $technicalId);
-					$stmtTech->execute();
-				}
+				$sqlUnlink = "DELETE FROM technical_taxes WHERE product_id = :id";
+				$stmtUnlink = $conn->prepare($sqlUnlink);
+				$stmtUnlink->bindValue(":id", $id);
+				$stmtUnlink->execute();
 
 				$sqlProd = "DELETE FROM products WHERE id = :id";
 				$stmtProd = $conn->prepare($sqlProd);
@@ -199,19 +168,7 @@
 					discount = :discount,
 					link_promo = :link_promo,
 					more_info = :more_info,
-					photo = :photo
-					WHERE id = :id";
-				$p_sql = $conn->prepare($sqlProduct);
-				$p_sql->bindValue(':id', $productId);
-				$p_sql->bindValue(':brand_id', $product->getBrandId());
-				$p_sql->bindValue(':title', $product->getTitle());
-				$p_sql->bindValue(':discount', $product->getDiscount());
-				$p_sql->bindValue(':link_promo', $product->getLinkPromo());
-				$p_sql->bindValue(':more_info', $product->getMoreInfo());
-				$p_sql->bindValue(':photo', $product->getPhoto());
-				$p_sql->execute();
-
-				$sqlTech = "UPDATE technical SET
+					photo = :photo,
 					includes = :includes,
 					screen = :screen,
 					resolution = :resolution,
@@ -223,34 +180,35 @@
 					memories = :memories,
 					operating_system = :operating_system,
 					free_shipping = :free_shipping
-					WHERE product_id = :product_id";
-				$t_sql = $conn->prepare($sqlTech);
-				$t_sql->bindValue(':brand_id', $product->getBrandId());
-				$t_sql->bindValue(':includes', $product->getIncludes());
-				$t_sql->bindValue(':screen', $product->getScreen());
-				$t_sql->bindValue(':resolution', $product->getResolution());
-				$t_sql->bindValue(':battery', $product->getBattery());
-				$t_sql->bindValue(':connections', $product->getConnections());
-				$t_sql->bindValue(':processor', $product->getProcessor());
-				$t_sql->bindValue(':weight', $product->getWeight());
-				$t_sql->bindValue(':dimensions', $product->getDimensions());
-				$t_sql->bindValue(':memories', $product->getMemories());
-				$t_sql->bindValue(':operating_system', $product->getOperatingSystem());
-				$t_sql->bindValue(':free_shipping', $product->getFreeShipping());
-				$t_sql->bindValue(':product_id', $product->getId());
-				$t_sql->execute();
+					WHERE id = :id";
 
-				$techIdQuery = $conn->prepare("SELECT id FROM technical WHERE product_id = :product_id LIMIT 1");
-				$techIdQuery->bindValue(':product_id', $product->getId());
-				$techIdQuery->execute();
-				$technicalId = $techIdQuery->fetchColumn();
+				$p_sql = $conn->prepare($sqlProduct);
+				$p_sql->bindValue(':id', $productId);
+				$p_sql->bindValue(':brand_id', $product->getBrandId());
+				$p_sql->bindValue(':title', $product->getTitle());
+				$p_sql->bindValue(':discount', $product->getDiscount());
+				$p_sql->bindValue(':link_promo', $product->getLinkPromo());
+				$p_sql->bindValue(':more_info', $product->getMoreInfo());
+				$p_sql->bindValue(':photo', $product->getPhoto());
+				$p_sql->bindValue(':includes', $product->getIncludes());
+				$p_sql->bindValue(':screen', $product->getScreen());
+				$p_sql->bindValue(':resolution', $product->getResolution());
+				$p_sql->bindValue(':battery', $product->getBattery());
+				$p_sql->bindValue(':connections', $product->getConnections());
+				$p_sql->bindValue(':processor', $product->getProcessor());
+				$p_sql->bindValue(':weight', $product->getWeight());
+				$p_sql->bindValue(':dimensions', $product->getDimensions());
+				$p_sql->bindValue(':memories', $product->getMemories());
+				$p_sql->bindValue(':operating_system', $product->getOperatingSystem());
+				$p_sql->bindValue(':free_shipping', $product->getFreeShipping());
+				$p_sql->execute();
 
-				$conn->prepare("DELETE FROM technical_taxes WHERE technical_id = :technical_id")
-					->execute([':technical_id' => $technicalId]);
+				$conn->prepare("DELETE FROM technical_taxes WHERE product_id = :product_id")
+					->execute([':product_id' => $productId]);
 
 				foreach ($taxes as $tax) {
 					$taxId = $this->insertTax($tax);
-					$this->linkTechnicalTax($technicalId, $taxId);
+					$this->linkProductTax($productId, $taxId);
 				}
 
 				$conn->commit();
@@ -265,9 +223,14 @@
 
 		public function listAll() {
 			try {
-				$sql = "SELECT p.*, b.brand_name, b.color_brand, b.color_text
+				$sql = "SELECT
+							p.*,
+							b.brand_name,
+							b.color_brand,
+							b.color_text
 						FROM products p
 						JOIN brands b ON p.brand_id = b.id";
+
 				$p_sql = Connection::getInstance()->prepare($sql);
 				$p_sql->execute();
 
@@ -276,6 +239,7 @@
 
 				foreach ($results as $row) {
 					$product = new Register();
+					$product->setId($row['id']);
 					$product->setBrandName($row['brand_name']);
 					$product->setBrandColor($row['color_brand']);
 					$product->setTextColor($row['color_text']);
@@ -284,6 +248,17 @@
 					$product->setLinkPromo($row['link_promo']);
 					$product->setMoreInfo($row['more_info']);
 					$product->setPhoto($row['photo']);
+					$product->setIncludes($row['includes']);
+					$product->setScreen($row['screen']);
+					$product->setResolution($row['resolution']);
+					$product->setBattery($row['battery']);
+					$product->setConnections($row['connections']);
+					$product->setProcessor($row['processor']);
+					$product->setWeight($row['weight']);
+					$product->setDimensions($row['dimensions']);
+					$product->setMemories($row['memories']);
+					$product->setOperatingSystem($row['operating_system']);
+					$product->setFreeShipping($row['free_shipping']);
 
 					$products[] = $product;
 				}
@@ -330,6 +305,27 @@
 			} catch (Exception $e) {
 				echo "Erro ao buscar ou criar marca: " . $e->getMessage();
 				return null;
+			}
+		}
+
+		public function getTaxesByProductId($productId) {
+			try {
+				$sql = "SELECT
+							t.id AS tax_id,
+							t.billing,
+							t.debit,
+							t.credit,
+							t.other
+						FROM technical_taxes tt
+						JOIN taxes t ON tt.tax_id = t.id
+						WHERE tt.product_id = :product_id";
+
+				$stmt = Connection::getInstance()->prepare($sql);
+				$stmt->bindValue(':product_id', $productId, PDO::PARAM_INT);
+				$stmt->execute();
+				return $stmt->fetchAll(PDO::FETCH_ASSOC);
+			} catch (Exception $e) {
+				return [];
 			}
 		}
 	}

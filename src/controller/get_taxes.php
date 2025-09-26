@@ -1,30 +1,12 @@
 <?php
 	require_once("DAO.class.php");
 
-	$technicalId = $_GET['technical_id'] ?? null;
+	$productId = $_GET['product_id'] ?? null;
 	$dao = new DAO();
 
-	if ($technicalId) {
-		try {
-			$conn = Connection::getInstance();
-			$sql = "SELECT
-						t.id AS tax_id,
-						t.billing,
-						t.debit,
-						t.credit,
-						t.other
-					FROM technical_taxes tt
-					JOIN taxes t ON tt.tax_id = t.id
-					WHERE tt.technical_id = :technical_id";
-
-			$stmt = $conn->prepare($sql);
-			$stmt->bindValue(':technical_id', $technicalId, PDO::PARAM_INT);
-			$stmt->execute();
-			$taxes = $stmt->fetchAll(PDO::FETCH_ASSOC);
-			echo json_encode($taxes);
-		} catch (Exception $e) {
-			echo json_encode([]);
-		}
+	if ($productId) {
+		$taxes = $dao->getTaxesByProductId($productId);
+		echo json_encode($taxes);
 	} else {
 		echo json_encode([]);
 	}
