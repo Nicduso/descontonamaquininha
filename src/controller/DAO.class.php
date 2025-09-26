@@ -162,6 +162,8 @@
 				$conn = Connection::getInstance();
 				$conn->beginTransaction();
 
+				$product->setId($productId);
+				
 				$sqlProduct = "UPDATE products SET
 					brand_id = :brand_id,
 					title = :title,

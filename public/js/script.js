@@ -18,7 +18,7 @@ function loadProducts(title = '') {
 }
 
 function fillForm(product) {
-  document.getElementById('form-id').value = product.id;
+  document.getElementById('form-id').value = product.product_id;
   document.querySelector('[name="brand"]').value = product.brand_name;
   document.querySelector('[name="title"]').value = product.title;
   document.querySelector('[name="discount"]').value = product.discount;
